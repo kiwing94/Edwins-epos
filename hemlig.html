@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Interaktiv Dikt</title>
+  <style>
+    body {
+      background-color: #f9f6f2;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .line {
+      font-size: 1.5em;
+      margin: 20px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .line:hover {
+      color: #6a0572;
+    }
+
+    #save-btn {
+      margin-top: 50px;
+      padding: 10px 25px;
+      font-size: 1em;
+      background-color: #6a0572;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #save-btn:hover {
+      background-color: #45064c;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🦋 Interaktiv dikt: "Flöde"</h1>
+
+  <div class="line" onclick="bytText(this, 0)">Vinden viskar mellan tysta träd</div>
+  <div class="line" onclick="bytText(this, 1)">Stigen vet vad hjärtat bär</div>
+  <div class="line" onclick="bytText(this, 2)">Tiden sjunker som en fjäder ner</div>
+
+  <button id="save-btn" onclick="sparaDikt()">💾 Spara min dikt</button>
+
+  <script>
+    const alternativaRader = [
+      [
+        "Skuggor dansar i solljusets färg",
+        "Grenar böjs av tankens tyngd",
+        "Dimman gömmer det vi glömt"
+      ],
+      [
+        "Marken minns våra steg i smyg",
+        "Ögat ler när natten faller",
+        "Själen vandrar, fri och hel"
+      ],
+      [
+        "Evigheten flyter genom oss",
+        "Tystnad formar våra namn",
+        "Hoppet spirar ur ingenting"
+      ]
+    ];
+
+    function bytText(elem, index) {
+      const nuvarandeText = elem.innerText;
+      const nyaAlternativ = alternativaRader[index].filter(rad => rad !== nuvarandeText);
+      const slump = nyaAlternativ[Math.floor(Math.random() * nyaAlternativ.length)];
+      elem.innerText = slump;
+    }
+
+    function sparaDikt() {
+      const rader = Array.from(document.querySelectorAll('.line')).map(l => l.innerText);
+      const dikt = rader.join('\n');
+      const blob = new Blob([dikt], { type: 'text/plain' });
+      const länk = document.createElement('a');
+      länk.href = URL.createObjectURL(blob);
+      länk.download = 'min_dikt.txt';
+      länk.click();
+    }
+  </script>
+
+</body>
+</html>
