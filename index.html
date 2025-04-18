@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kiwing.org — Temple of Poetry</title>
+  <title>Kiwing.org — Dead languages</title>
   <!-- Link to the external CSS file -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="light-theme">
 
   <!-- Main Container -->
   <div class="container">
@@ -16,11 +16,12 @@
     <div class="sidebar">
       <h2>Languages</h2>
       
-      <!-- Categories for Darkness and Light -->
-      <button onclick="toggleCategory('dark')">Darkness</button>
-      <button onclick="toggleCategory('light')">Light</button>
+      <!-- Categories for first and last category -->
+      <button onclick="toggleCategory('first')">Darkness</button>
+      <button onclick="toggleCategory('last')">Light</button>
+      <button onclick="toggleTheme()">Toggle Dark/Light Theme</button>
       
-      <div id="dark" class="category">
+      <div id="first" class="category">
         <h3>Dark Languages</h3>
         <div class="scrollable">
           <ul>
@@ -34,7 +35,7 @@
         </div>
       </div>
 
-      <div id="light" class="category" style="display: none;">
+      <div id="last" class="category" style="display: none;">
         <h3>Light Languages</h3>
         <div class="scrollable">
           <ul>
@@ -63,16 +64,21 @@
   <!-- Script to Toggle Categories -->
   <script>
     function toggleCategory(category) {
-      const darkCategory = document.getElementById("dark");
-      const lightCategory = document.getElementById("light");
+      const darkCategory = document.getElementById("first");
+      const lightCategory = document.getElementById("last");
 
-      if (category === 'dark') {
+      if (category === 'first') {
         darkCategory.style.display = 'block';
         lightCategory.style.display = 'none';
-      } else if (category === 'light') {
+      } else if (category === 'last') {
         darkCategory.style.display = 'none';
         lightCategory.style.display = 'block';
       }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-theme');
+      document.body.classList.toggle('light-theme');
     }
   </script>
 
