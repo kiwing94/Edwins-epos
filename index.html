@@ -24,23 +24,35 @@
       margin-left: auto;
       margin-right: auto;
     }
-    .nav {
+    .nav-container {
       margin-top: 50px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
     }
-    .nav a {
-      background: #6200ea; /* Dark purple button */
-      color: white;
-      padding: 15px 25px;
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #6200ea;
+      min-width: 200px;
+      z-index: 1;
       border-radius: 10px;
+      overflow-y: auto;
+      max-height: 400px;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
       text-decoration: none;
+      display: block;
       transition: background 0.3s;
     }
-    .nav a:hover {
-      background: #3700b3; /* Darker purple for hover effect */
+    .dropdown-content a:hover {
+      background-color: #3700b3;
     }
   </style>
 </head>
@@ -49,20 +61,262 @@
   <h1>Kiwing.org</h1>
   <p>A sanctuary for lost languages and poetic flows. Here, style, breath, and timeless rhythm converge.</p>
 
-  <div class="nav">
-    <a href="latin.html">🌾 Latin</a>
-    <a href="sumerian.html">🧱 Sumerian</a>
-    <a href="greek.html">🌿 Paleo-Ellenikē</a>
-    <a href="sanskrit.html">🪷 Sanskrit</a>
-    <a href="norse.html">🪓 Old Norse</a>
-    <a href="phoenician.html">📜 Phoenician</a>
-    <a href="umbrian.html">🍃 Umbrian</a>
-    <a href="oskian.html">🗿 Oskian</a>
-    <a href="aramaic.html">🔥 Aramaic</a>
-    <a href="hebrew.html">✡️ Classical Hebrew</a>
-    <a href="chinese.html">🀄 Classical Chinese</a>
-    <a href="hieroglyphic.html">🦅 Hieroglyphic Egyptian</a>
+  <div class="nav-container">
+    <div class="dropdown">
+      <button class="dropbtn">Explore Languages</button>
+      <div class="dropdown-content">
+        <a href="latin.html">🌾 Latin</a>
+        <a href="sumerian.html">🧱 Sumerian</a>
+        <a href="greek.html">🌿 Paleo-Ellenikē</a>
+        <a href="sanskrit.html">🪷 Sanskrit</a>
+        <a href="norse.html">🪓 Old Norse</a>
+        <a href="phoenician.html">📜 Phoenician</a>
+        <a href="umbrian.html">🍃 Umbrian</a>
+        <a href="oskian.html">🗿 Oskian</a>
+        <a href="aramaic.html">🔥 Aramaic</a>
+        <a href="hebrew.html">✡️ Classical Hebrew</a>
+        <a href="chinese.html">🀄 Classical Chinese</a>
+        <a href="hieroglyphic.html">🦅 Hieroglyphic Egyptian</a>
+        <a href="oldenglish.html">🏰 Old English</a>
+        <a href="oldfrench.html">🦋 Old French</a>
+        <a href="middleenglish.html">⚔️ Middle English</a>
+        <!-- Add more languages as necessary -->
+      </div>
+    </div>
   </div>
+
+</body>
+</html>
+How It Works:
+The dropdown menu allows you to list a large number of languages (like 121 languages) without crowding the page.
+
+The dropdown-content becomes visible when the user hovers over the "Explore Languages" button, providing access to the language links.
+
+The list is scrollable, so you can add as many languages as necessary.
+
+This will give you a clean, organized way to manage a large number of languages on your site while keeping the user interface easy to navigate.
+
+Let me know if you'd like further adjustments or enhancements!
+
+
+
+
+
+
+
+Du sade:
+fix the style and color to be modern not too dark not too bright and add buttons, scrollable tool and also have not all pages at the same place, have a left or right side with buttons for each category darkness and light hikari...
+
+
+ChatGPT sade:
+To achieve a more modern look while keeping the design visually appealing and user-friendly, I’ll make the following improvements based on your request:
+
+Color Scheme: A balanced color scheme that is neither too dark nor too bright. I’ll use a muted light color palette with subtle gradients, and make sure text is easy to read.
+
+Buttons & Scrollable Tool: Introduce buttons for navigation in a side panel, so the page isn’t cluttered with all links at once.
+
+Categories for Darkness and Light: I'll add a left-side or right-side navigation panel to categorize languages into sections like "Darkness" and "Light" (as per your suggestion).
+
+General Layout: Modernize the layout with some spacing, modern fonts, and clear divisions between sections. I'll use CSS Grid and Flexbox for a responsive and organized structure.
+
+Here’s the updated index.html with a more modern and cleaner design:
+
+Modernized index.html with Left-Side Buttons and Scrollable Categories
+html
+Kopiera
+Redigera
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kiwing.org — Temple of Poetry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* General Body Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f4f4f4, #e0e0e0); /* Subtle light gradient */
+      color: #333; /* Dark text for readability */
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      height: 100vh;
+    }
+
+    /* Main Container */
+    .container {
+      display: flex;
+      flex: 1;
+      height: 100vh;
+    }
+
+    /* Sidebar with Buttons */
+    .sidebar {
+      width: 250px;
+      background-color: #333; /* Dark sidebar background */
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      color: #fff;
+      font-size: 1.6em;
+      margin-bottom: 20px;
+    }
+
+    .sidebar button {
+      background: #6200ea; /* Purple button */
+      color: #fff;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .sidebar button:hover {
+      background: #3700b3; /* Darker purple for hover effect */
+    }
+
+    /* Content Area */
+    .content {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    /* Header Styling */
+    h1 {
+      color: #4a148c;
+      font-size: 3em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 800px;
+      margin: 20px auto;
+      line-height: 1.5;
+    }
+
+    /* Scrollable Categories */
+    .category {
+      margin-bottom: 30px;
+    }
+
+    .category h3 {
+      color: #6200ea;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .category ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .category ul li {
+      padding: 8px 0;
+    }
+
+    .category ul li a {
+      color: #333;
+      text-decoration: none;
+      font-size: 1.1em;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .category ul li a:hover {
+      background-color: #6200ea;
+      color: white;
+    }
+
+    /* Scrollable Content */
+    .scrollable {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Container -->
+  <div class="container">
+    
+    <!-- Sidebar with Language Buttons -->
+    <div class="sidebar">
+      <h2>Languages</h2>
+      
+      <!-- Categories for Darkness and Light -->
+      <button onclick="toggleCategory('dark')">Darkness</button>
+      <button onclick="toggleCategory('light')">Light</button>
+      
+      <div id="dark" class="category">
+        <h3>Dark Languages</h3>
+        <div class="scrollable">
+          <ul>
+            <li><a href="sumerian.html">🧱 Sumerian</a></li>
+            <li><a href="norse.html">🪓 Old Norse</a></li>
+            <li><a href="phoenician.html">📜 Phoenician</a></li>
+            <li><a href="aramaic.html">🔥 Aramaic</a></li>
+            <li><a href="hebrew.html">✡️ Classical Hebrew</a></li>
+            <li><a href="hieroglyphic.html">🦅 Hieroglyphic Egyptian</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="light" class="category" style="display: none;">
+        <h3>Light Languages</h3>
+        <div class="scrollable">
+          <ul>
+            <li><a href="latin.html">🌾 Latin</a></li>
+            <li><a href="greek.html">🌿 Paleo-Ellenikē</a></li>
+            <li><a href="sanskrit.html">🪷 Sanskrit</a></li>
+            <li><a href="umbrian.html">🍃 Umbrian</a></li>
+            <li><a href="oskian.html">🗿 Oskian</a></li>
+            <li><a href="chinese.html">🀄 Classical Chinese</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+      <h1>Kiwing.org</h1>
+      <p>A sanctuary for lost languages and poetic flows. Here, style, breath, and timeless rhythm converge.</p>
+
+      <p>Select a language to explore more.</p>
+    </div>
+
+  </div>
+
+  <!-- Script to Toggle Categories -->
+  <script>
+    function toggleCategory(category) {
+      const darkCategory = document.getElementById("dark");
+      const lightCategory = document.getElementById("light");
+
+      if (category === 'dark') {
+        darkCategory.style.display = 'block';
+        lightCategory.style.display = 'none';
+      } else if (category === 'light') {
+        darkCategory.style.display = 'none';
+        lightCategory.style.display = 'block';
+      }
+    }
+  </script>
 
 </body>
 </html>
