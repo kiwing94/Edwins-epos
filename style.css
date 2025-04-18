@@ -1,60 +1,39 @@
-/* Default Light Theme */
-body.light-theme {
-  background-color: white;
-  color: black;
+:root {
+  --accent-color: #FF7FFF;
+  --bg-color: #ffffff;
+  --text-color: #000000;
 }
 
-.sidebar.light-theme {
-  background-color: #f0f0f0;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+  }
 }
 
-.content.light-theme {
-  background-color: #fafafa;
+/* Alternativ: manuell dark-mode med klass */
+body.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
 }
 
-/* Dark Theme */
-body.dark-theme {
-  background-color: #121212;
-  color: white;
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.sidebar.dark-theme {
-  background-color: #333;
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.content.dark-theme {
-  background-color: #2a2a2a;
-}
-
-button {
-  background-color: #444;
-  color: white;
-}
-
-button:hover {
-  background-color: #666;
-}
-
-/* Additional styling */
-.container {
-  display: flex;
-}
-
-.sidebar {
-  width: 200px;
-  padding: 20px;
-}
-
-.content {
-  padding: 20px;
-  flex-grow: 1;
-}
-
-button {
-  padding: 10px;
-  margin: 10px 0;
-  cursor: pointer;
-  border: none;
-  font-size: 16px;
+a:hover {
+  text-decoration: underline;
+  opacity: 0.85;
 }
 
