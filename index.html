@@ -1,176 +1,68 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kiwing.org — Diktens Portal</title>
+  <title>Kiwing.org — Temple of Poetry</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root {
-      --lila: #6a0572;
-      --rosa: #ff6f61;
-      --bakgrund: linear-gradient(to right, #e0f7fa, #f3e5f5);
-    }
-
     body {
       margin: 0;
       font-family: 'Georgia', serif;
-      background: var(--bakgrund);
-      color: #3e2f5b;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    header {
-      background: linear-gradient(to right, var(--lila), #ab47bc);
-      color: white;
-      padding: 80px 20px 40px;
+      background: #121212; /* Dark background */
+      color: #e0e0e0; /* Light text */
       text-align: center;
+      padding: 60px 20px;
     }
-
     h1 {
-      font-size: 3.5em;
-      animation: glow 3s infinite alternate;
+      font-size: 3.2em;
+      color: #8e24aa; /* Light purple for contrast */
     }
-
-    nav {
+    p {
+      font-size: 1.2em;
+      margin-top: 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .nav {
+      margin-top: 50px;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      background: #ede7f6;
-      padding: 15px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      gap: 30px;
+      flex-wrap: wrap;
     }
-
-    nav a {
-      text-decoration: none;
-      color: var(--lila);
-      font-weight: bold;
-      padding: 8px 15px;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: var(--lila);
+    .nav a {
+      background: #6200ea; /* Dark purple button */
       color: white;
-    }
-
-    section {
-      padding: 80px 20px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s forwards;
-    }
-
-    section:nth-of-type(2) { animation-delay: 0.3s; }
-    section:nth-of-type(3) { animation-delay: 0.6s; }
-    section:nth-of-type(4) { animation-delay: 0.9s; }
-
-    .quote {
-      font-style: italic;
-      font-size: 1.6em;
-      color: #4a148c;
-      margin: 30px auto;
-      max-width: 700px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: var(--rosa);
-      color: white;
+      padding: 15px 25px;
       border-radius: 10px;
       text-decoration: none;
-      font-size: 1em;
-      transition: background-color 0.3s;
+      transition: background 0.3s;
     }
-
-    .btn:hover {
-      background: #d84315;
-    }
-
-    footer {
-      background: #ede7f6;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: var(--lila);
-    }
-
-    .butterfly {
-      font-size: 40px;
-      position: absolute;
-      top: 100px;
-      left: -100px;
-      animation: flyAcross 14s linear infinite;
-    }
-
-    /* Effekter */
-    @keyframes glow {
-      from { text-shadow: 0 0 5px white; }
-      to   { text-shadow: 0 0 20px #ff80ab; }
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes flyAcross {
-      0%   { transform: translateX(0) rotate(0deg); }
-      50%  { transform: translateX(800px) rotate(15deg); }
-      100% { transform: translateX(1600px) rotate(-10deg); }
+    .nav a:hover {
+      background: #3700b3; /* Darker purple for hover effect */
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Välkommen till Kiwing.org</h1>
-    <p>Här finner du lite allt möjligt, så som dikter och min github profil.</p>
-  </header>
+  <h1>Kiwing.org</h1>
+  <p>A sanctuary for lost languages and poetic flows. Here, style, breath, and timeless rhythm converge.</p>
 
-  <nav>
-    <a href="#intro">Intro</a>
-    <a href="#dikt">Diktens Magi</a>
-    <a href="#projekt">Projekt</a>
-    <a href="#kontakt">Kontakt</a>
-  </nav>
-
-  <div class="butterfly">🦋</div>
-
-  <section id="intro">
-    <h2>Intro</h2>
-    <p>Kiwing är inte bara ett namn. Det är en röst som flödar över skärmens kant.</p>
-    <div class="quote">"Svar kan både ställa flödet och begränsa det, men frågor öppnar upp till nya vägar att utforska."</div>
-  </section>
-
-  <section id="dikt">
-    <h2>Diktens Magi</h2>
-    <p>Här formas orden utan gränser. Interaktiva verser, levande rader, symboliska ritualer och slutligen öppna portaler.</p>
-    <a href="hemlig.html" class="btn">🕊 Utforska dikten</a>
-  </section>
-
-  <section id="projekt">
-    <h2>Projekt</h2>
-    <p>Plattformar. Kod. Översättare. Poetanalyser. Allt föds ur denna kreativa källa.</p>
-    <a href="https://github.com/kiwing94" target="_blank" class="btn">💻 Github-profil</a>
-  </section>
-
-  <section id="kontakt">
-    <h2>Kontakt</h2>
-    <p>Vill du samarbeta, skapa eller bara skriva? Hör av dig till <b>kiwing94@hotmail.com</b></p>
-  </section>
-
-  <footer>
-    &copy; 2025 Kiwing.org | Skapat med kod, hjärta och stjärnstoft ✨
-  </footer>
+  <div class="nav">
+    <a href="latin.html">🌾 Latin</a>
+    <a href="sumerian.html">🧱 Sumerian</a>
+    <a href="greek.html">🌿 Paleo-Ellenikē</a>
+    <a href="sanskrit.html">🪷 Sanskrit</a>
+    <a href="norse.html">🪓 Old Norse</a>
+    <a href="phoenician.html">📜 Phoenician</a>
+    <a href="umbrian.html">🍃 Umbrian</a>
+    <a href="oskian.html">🗿 Oskian</a>
+    <a href="aramaic.html">🔥 Aramaic</a>
+    <a href="hebrew.html">✡️ Classical Hebrew</a>
+    <a href="chinese.html">🀄 Classical Chinese</a>
+    <a href="hieroglyphic.html">🦅 Hieroglyphic Egyptian</a>
+  </div>
 
 </body>
 </html>
