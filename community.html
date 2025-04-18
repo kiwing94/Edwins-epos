@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community – Kiwing</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      background: #fff;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+      font-size: 1em;
+      font-family: Georgia, serif;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 1em;
+    }
+    .post {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+    .post small {
+      display: block;
+      margin-top: 0.5rem;
+      color: #666;
+    }
+    .clear-btn {
+      margin-top: 2rem;
+      background: #e33;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌐 Kiwing Community Wall</h1>
+  <p style="text-align:center;">Share your thoughts, poems, or inspirations. No login needed.</p>
+
+  <h2>✏️ New Post</h2>
+  <input type="text" id="author" placeholder="Your name or leave blank (Anonymous)" />
+  <textarea id="message" placeholder="Your poem, reflection, or idea..."></textarea>
+  <button onclick="submitPost()">Post</button>
+
+  <div id="posts"></div>
+
+  <button class="clear-btn" onclick="clearPosts()">🗑️ Clear All (Local Only)</button>
+
+  <script>
+    function loadPosts() {
+      const container = document.getElementById('posts');
+      container.innerHTML = '';
+      const posts = JSON.parse(localStorage.getItem('kiwing_community') || '[]');
+      posts.reverse().forEach(post => {
+        const div = document.createElement('div');
+        div.className = 'post';
+        div.innerHTML = `<p>${post.message}</p><small>— ${post.author || 'Anonymous'} | ${post.timestamp}</small>`;
+        container.appendChild(div);
+      });
+    }
+
+    function submitPost() {
+      const author = document.getElementById('author').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!message) return alert("Please write something.");
+      const posts = JSON.parse(localStorage.getItem('kiwing_community') || '[]');
+      const timestamp = new Date().toLocaleString();
+      posts.push({ author, message, timestamp });
+      localStorage.setItem('kiwing_community', JSON.stringify(posts));
+      document.getElementById('message').value = '';
+      loadPosts();
+    }
+
+    function clearPosts() {
+      if (confirm("This will erase all posts from this device. Proceed?")) {
+        localStorage.removeItem('kiwing_community');
+        loadPosts();
+      }
+    }
+
+    window.onload = loadPosts;
+  </script>
+</body>
+</html>

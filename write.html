@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Write a Poem – Kiwing</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .editor {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fefefe;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      font-family: 'Georgia', serif;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      font-family: Georgia, serif;
+      font-size: 1em;
+      padding: 1rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1.2em;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.7rem 1.2rem;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="editor">
+    <h1>Write Your Poem</h1>
+    <input type="text" id="poemTitle" placeholder="Poem Title" />
+    <textarea id="poemContent" placeholder="Start writing..."></textarea><br>
+    <button onclick="savePoem()">💾 Save Locally</button>
+    <button onclick="downloadPoem()">⬇️ Download</button>
+  </div>
+
+  <script>
+    function savePoem() {
+      const title = document.getElementById('poemTitle').value;
+      const content = document.getElementById('poemContent').value;
+      if (title) {
+        localStorage.setItem('poem_' + title, content);
+        alert('Saved locally!');
+      } else {
+        alert('Please enter a title first.');
+      }
+    }
+
+    function downloadPoem() {
+      const title = document.getElementById('poemTitle').value || 'my_poem';
+      const content = document.getElementById('poemContent').value;
+      const blob = new Blob([content], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = title + '.txt';
+      a.click();
+    }
+  
+    window.onload = function() {
+      const title = localStorage.getItem('edit_title');
+      const content = localStorage.getItem('edit_content');
+      if (title && content) {
+        document.getElementById('poemTitle').value = title;
+        document.getElementById('poemContent').value = content;
+        localStorage.removeItem('edit_title');
+        localStorage.removeItem('edit_content');
+      }
+    }
+    </script>
+</body>
+</html>

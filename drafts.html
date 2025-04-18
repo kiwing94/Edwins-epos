@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Drafts – Kiwing</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      font-family: Georgia, serif;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    .draft {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+    }
+    .draft h3 {
+      margin: 0 0 0.5rem;
+    }
+    .draft pre {
+      background: #f4f4f4;
+      padding: 1rem;
+      white-space: pre-wrap;
+      border-radius: 5px;
+    }
+    .buttons {
+      margin-top: 0.5rem;
+    }
+    button {
+      margin-right: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My Drafts</h1>
+    <div id="drafts"></div>
+  </div>
+
+  <script>
+    function loadDrafts() {
+      const draftsContainer = document.getElementById('drafts');
+      draftsContainer.innerHTML = '';
+      for (let key in localStorage) {
+        if (key.startsWith('poem_')) {
+          const title = key.replace('poem_', '');
+          const content = localStorage.getItem(key);
+          const draft = document.createElement('div');
+          draft.className = 'draft';
+          draft.innerHTML = `
+            <h3>${title}</h3>
+            <pre>${content}</pre>
+            <div class="buttons">
+              <button onclick="editDraft('${title}')">✏️ Edit</button>
+              <button onclick="deleteDraft('${title}')">🗑️ Delete</button>
+            </div>
+          `;
+          draftsContainer.appendChild(draft);
+        }
+      }
+    }
+
+    function editDraft(title) {
+      const content = localStorage.getItem('poem_' + title);
+      localStorage.setItem('edit_title', title);
+      localStorage.setItem('edit_content', content);
+      window.location.href = 'write.html';
+    }
+
+    function deleteDraft(title) {
+      if (confirm('Delete "' + title + '"?')) {
+        localStorage.removeItem('poem_' + title);
+        loadDrafts();
+      }
+    }
+
+    loadDrafts();
+  </script>
+</body>
+</html>
