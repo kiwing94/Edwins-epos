@@ -1,8 +1,0 @@
-<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>Atechne 2D RPG</title><style>canvas{background:#111;border:1px solid #333}</style></head>
-<body><h2 style="color:white;text-align:center;">Atechne Procedural RPG</h2><canvas id="game" width="800" height="600"></canvas>
-<script>
-const ctx = document.getElementById("game").getContext("2d");
-let mobs = Array.from({length:5},(_,i)=>({x:50+i*120,y:300,w:50,h:50,hp:100,label:i===4?"Boss Slime":"Slime "+(i+1)}));
-function draw(){ctx.clearRect(0,0,800,600);mobs.forEach(m=>{ctx.fillStyle="hsl("+Math.random()*360+",70%,50%)";ctx.fillRect(m.x,m.y,m.w,m.h);ctx.fillStyle="white";ctx.fillText(m.label,m.x,m.y-5);ctx.fillStyle="lime";ctx.fillRect(m.x,m.y+m.h+5,m.w*(m.hp/100),5);});requestAnimationFrame(draw);} draw();
-</script></body></html>
