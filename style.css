@@ -1,39 +1,69 @@
-:root {
-  --accent-color: #FF7FFF;
-  --bg-color: #ffffff;
-  --text-color: #000000;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #121212;
-    --text-color: #ffffff;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-/* Alternativ: manuell dark-mode med klass */
-body.dark {
-  --bg-color: #121212;
-  --text-color: #ffffff;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 2rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  background-color: #fdfdfd;
+  color: #222;
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: auto;
 }
 
-a {
-  color: var(--accent-color);
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+nav {
+  margin-bottom: 2rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-left: 0;
+}
+
+nav ul li a {
   text-decoration: none;
-  font-weight: bold;
+  color: #005f99;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
 }
 
-a:hover {
-  text-decoration: underline;
-  opacity: 0.85;
+nav ul li a:hover {
+  border-bottom: 2px solid #005f99;
 }
 
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    display: none;
+  }
+  nav ul.open {
+    display: flex;
+  }
+  .hamburger {
+    display: block;
+  }
+}
