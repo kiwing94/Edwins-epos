@@ -73,11 +73,6 @@ body {
   letter-spacing: 1px;
 }
 
-.content {
-  width: calc(100vw - 260px);
-  max-width: none !important;
-}
-
 .dictionary-wrapper {
   max-width: 1600px;
   margin: 0 auto;
@@ -125,8 +120,10 @@ body {
 
 /* CONTENT */
 .content {
-  padding: 2rem;
-  flex: 1;
+  width: calc(100vw - 260px);  /* full width minus sidebar */
+  max-width: none !important;  /* remove width limiting */
+  padding: 2rem;               /* keep nice spacing */
+  flex: 1;                     /* fill available space */
 }
 
 .content h1 {
