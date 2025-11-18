@@ -1,69 +1,119 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
-  background-color: #fdfdfd;
-  color: #222;
-  padding: 1.5rem;
-  max-width: 800px;
-  margin: auto;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #1b1b1b;
+  color: #e6e3da;
 }
 
-h1 {
-  font-size: 2rem;
+.topbar {
+  background: #111;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.2rem;
+  border-bottom: 1px solid #333;
+}
+
+.logo {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: #e6e3da;
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: none;
+}
+
+.container {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  background: #151515;
+  padding: 1rem;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  border-right: 1px solid #333;
+  transition: transform 0.3s ease;
+}
+
+.sidebar h2 {
+  font-family: "Merriweather";
   margin-bottom: 1rem;
 }
 
-nav {
+.sidebar a {
+  display: block;
+  margin: 0.3rem 0;
+  padding: 0.3rem;
+  color: #e6e3da;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background: #2b2b2b;
+  border-radius: 5px;
+}
+
+.category {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #d9b36c;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* CONTENT */
+.content {
+  padding: 2rem;
+  flex: 1;
+}
+
+.content h1 {
+  font-family: "Merriweather";
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.intro {
+  font-size: 1.1rem;
   margin-bottom: 2rem;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding-left: 0;
+/* POEM */
+.poetry-widget {
+  background: #222;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #444;
 }
 
-nav ul li a {
-  text-decoration: none;
-  color: #005f99;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
+.poetry-widget blockquote {
+  font-style: italic;
+  margin: 0 0 1rem 0;
 }
 
-nav ul li a:hover {
-  border-bottom: 2px solid #005f99;
-}
-
-.hamburger {
-  display: none;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 1rem;
-}
-
-@media (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-    display: none;
+/* MOBILE */
+@media (max-width: 900px) {
+  .sidebar {
+    position: absolute;
+    left: 0;
+    transform: translateX(-100%);
   }
-  nav ul.open {
-    display: flex;
+  .sidebar.open {
+    transform: translateX(0);
   }
-  .hamburger {
+  .menu-btn {
     display: block;
   }
 }
