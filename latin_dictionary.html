@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latin Dictionary</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Extra styling för just dictionary-grid */
+    .dictionary-wrapper {
+      margin-top: 2rem;
+    }
+
+    .dictionary-grid {
+      height: 75vh;            /* gör den scrollbar */
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      padding-right: 1rem;     /* utrymme för scrollbaren */
+    }
+
+    .latin-card {
+      background: #222;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid #333;
+      text-align: center;
+      font-size: 1rem;
+      color: #e6e3da;
+      transition: 0.2s;
+    }
+
+    .latin-card strong {
+      color: #d9b36c;
+      font-size: 1.1rem;
+    }
+
+    .latin-card:hover {
+      background: #2c2c2c;
+      border-color: #d9b36c;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="logo">LATIN • DICTIONARY</div>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+  </header>
+
+  <div class="container">
+
+    <!-- Sidebar (samma som resten av din sida) -->
+    <aside id="sidebar" class="sidebar">
+      <h2>Languages</h2>
+      <nav>
+        <a href="index.html">← Back to Homepage</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+
+      <h1>Latin Dictionary</h1>
+      <p class="intro">Scroll to explore the full Latin → English vocabulary list.</p>
+
+      <div class="dictionary-wrapper">
+        <div id="latinGrid" class="dictionary-grid">
+          <!-- Latin cards autogenereras här -->
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    /* ---- LATIN WORD LIST ---- */
+    const latin_words = {
+      "vita": "life",
+      "amor": "love",
+      "libertas": "freedom",
+      "amare": "to love",
+      "videre": "to see",
+      "scribere": "to write",
+      "magnus": "great",
+      "parvus": "small",
+      "bonus": "good",
+      "puella": "girl",
+      "puer": "boy",
+      "domus": "house",
+      "femina": "woman",
+      "vir": "man",
+      "lux": "light",
+      "tenebrae": "darkness",
+      "deus": "god",
+      "nox": "night",
+      "pater noster": "our father",
+      "sanctus": "holy, sacred",
+      "argumentus": "proof, claim to have proof",
+      "dominus": "lord, master",
+      "arithmetica": "numbers",
+      "vox": "voice",
+
+      /* + Alla utökade ord — KLIPP IN HÄR */
+      "canis": "dog",
+      "equus": "horse",
+      "bellum": "war",
+      "pax": "peace",
+      "flumen": "river",
+      "mons": "mountain",
+      "caelum": "sky, heaven",
+      "terra": "earth",
+      "mare": "sea",
+      "insula": "island",
+      "templum": "temple",
+      "urbs": "city",
+      "rex": "king",
+      "regina": "queen",
+      "hostis": "enemy",
+      "amicus": "friend",
+      "amica": "female friend",
+      "senatus": "senate",
+      "populus": "people",
+
+      /* verbs */
+      "ambulare": "to walk",
+      "currere": "to run",
+      "bibere": "to drink",
+      "dormire": "to sleep",
+      "laborare": "to work",
+      "capere": "to take",
+      "ducere": "to lead",
+      "mittere": "to send",
+      "ponere": "to place",
+      "facere": "to make",
+      "venire": "to come",
+      "ire": "to go",
+
+      /* adj */
+      "pulcher": "beautiful",
+      "clarus": "bright, famous",
+      "novus": "new",
+      "antiquus": "old, ancient",
+      "durus": "hard",
+      "acer": "sharp",
+      "dives": "rich",
+      "pauper": "poor",
+
+      /* colors */
+      "albus": "white",
+      "niger": "black",
+      "ruber": "red",
+      "viridis": "green",
+      "caeruleus": "blue"
+    };
+
+    /* ---- RENDER GRID ---- */
+    const grid = document.getElementById("latinGrid");
+
+    for (const [latin, english] of Object.entries(latin_words)) {
+      grid.innerHTML += `
+        <div class="latin-card">
+          <strong>${latin}</strong>
+          <div>${english}</div>
+        </div>
+      `;
+    }
+
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
