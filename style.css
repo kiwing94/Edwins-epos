@@ -73,6 +73,42 @@ body {
   letter-spacing: 1px;
 }
 
+/* GRID FOR LANGUAGE CARDS */
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.lang-card {
+  background: #222;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #333;
+  text-align: center;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #e6e3da;
+  transition: 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.lang-card span {
+  font-size: 0.75rem;
+  color: #d9b36c;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.lang-card:hover {
+  background: #2c2c2c;
+  border-color: #d9b36c;
+  transform: translateY(-2px);
+}
+
 /* CONTENT */
 .content {
   padding: 2rem;
