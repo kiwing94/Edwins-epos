@@ -1,91 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kiwing.org — Languages</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-  <!-- Main Container -->
+  <header class="topbar">
+    <div class="logo">KIWING • LANGUAGES</div>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+  </header>
+
   <div class="container">
 
-    <!-- Sidebar with Language Buttons -->
-    <div class="sidebar">
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
       <h2>Languages</h2>
 
-      <div class="scrollable">
-        <ul>
-          <!-- Modern Languages -->
-          <li><a href="modern_languages.html">🌍 Modern Languages</a></li>
-          <li><a href="chinese_modern.html">🇨🇳 Chinese (Mandarin)</a></li>
-          <li><a href="spanish.html">🇪🇸 Spanish</a></li>
-          <li><a href="english.html">🇬🇧 English</a></li>
-          <li><a href="hindi.html">🇮🇳 Hindi</a></li>
-          <li><a href="french.html">🇫🇷 French</a></li>
-          <li><a href="arabic_modern.html">🇸🇦 Arabic</a></li>
-          <li><a href="bengali.html">🇧🇩 Bengali</a></li>
-          <li><a href="portuguese.html">🇵🇹 Portuguese</a></li>
-          <li><a href="russian.html">🇷🇺 Russian</a></li>
-          <li><a href="japanese.html">🇯🇵 Japanese</a></li>
+      <nav>
+        <p class="category">🌍 Modern</p>
+        <a href="chinese_modern.html">Chinese</a>
+        <a href="spanish.html">Spanish</a>
+        <a href="english.html">English</a>
+        <a href="hindi.html">Hindi</a>
+        <a href="french.html">French</a>
+        <a href="arabic_modern.html">Arabic</a>
 
-          <!-- Ancient Grammar -->
-          <li><a href="grammar_in_ancient_inflected_langs.html">📚 Grammar in Ancient Inflected Languages</a></li>
+        <p class="category">🌑 Dead / Proto-Languages</p>
+        <a href="proto_indo_european.html">Proto-Indo-European</a>
+        <a href="proto_japonic.html">Proto-Japonic</a>
+        <a href="proto_semitic.html">Proto-Semitic</a>
+        <a href="etruscan.html">Etruscan</a>
+        <a href="hittite.html">Hittite</a>
 
-          <!-- Sacred Texts -->
-          <li><a href="ha_vev_ha_vev_breath_twice_full_complete.html">🌬️ Ha Vev Ha Vev — Breath Twice</a></li>
-          <li><a href="combined_genesis_documents.html">📜 Amorite Scroll (First Semitic People)</a></li>
+        <p class="category">📚 Ancient Grammar</p>
+        <a href="grammar_in_ancient_inflected_langs.html">Grammar Overview</a>
 
-          <!-- Dead / Proto Languages -->
-          <li><strong>🌑 Dead / Proto-Languages</strong></li>
-          <li><a href="proto_japonic.html">🗾 Proto-Japonic</a></li>
-          <li><a href="proto_indo_european.html">🌐 Proto-Indo-European</a></li>
-          <li><a href="proto_sinotibetan.html">⛰️ Proto-Sino-Tibetan</a></li>
-          <li><a href="proto_semitic.html">📜 Proto-Semitic</a></li>
-          <li><a href="proto_uralic.html">🌲 Proto-Uralic</a></li>
-          <li><a href="etruscan.html">🏺 Etruscan</a></li>
-          <li><a href="hittite.html">⚔️ Hittite</a></li>
-          <li><a href="gothic.html">🛡️ Gothic</a></li>
-          <li><a href="old_norse.html">❄️ Old Norse</a></li>
-          <li><a href="tocharian.html">🏜️ Tocharian</a></li>
-          <li><a href="elamite.html">⛏️ Elamite</a></li>
-          <li><a href="hurrian.html">🦋 Hurrian</a></li>
-          <li><a href="proto_italic.html">🇮🇹 Proto-Italic</a></li>
-          <li><a href="proto_celtic.html">☘️ Proto-Celtic</a></li>
+        <p class="category">🌀 Sacred Texts</p>
+        <a href="ha_vev_ha_vev_breath_twice_full_complete.html">Ha Vev Ha Vev</a>
+        <a href="combined_genesis_documents.html">Amorite Scroll</a>
+      </nav>
+    </aside>
 
-          <!-- Austronesian Proto-Languages -->
-          <li><strong>🌊 Austronesian Proto-Languages</strong></li>
-          <li><a href="proto_austronesian.html">🌴 Proto-Austronesian</a></li>
-          <li><a href="proto_malayo_polynesian.html">🌺 Proto-Malayo-Polynesian</a></li>
-          <li><a href="proto_philippine.html">🏝️ Proto-Philippine</a></li>
-          <li><a href="proto_oceanic.html">🌊 Proto-Oceanic</a></li>
-          <li><a href="proto_western_malayo_polynesian.html">🐚 Proto-Western Malayo-Polynesian</a></li>
-          <li><a href="proto_formosan.html">⛰️ Proto-Formosan</a></li>
-        </ul>
-      </div>
-    </div>
+    <!-- CONTENT -->
+    <main class="content">
+      <h1>Dead & Modern Languages</h1>
 
-    <!-- Main Content Area -->
-    <div class="content">
-      <h1>Welcome to My Den of Dead and Modern Languages</h1>
-      <p>Here you'll find a mix of the living and the long-forgotten languages. Dive in and explore! Whether you’re into the modern tongues spoken by billions or the ancient ones that shaped our history, there's something here for you.</p>
-      <p>Click a language to start your journey.</p>                                                                                  
+      <p class="intro">
+        Explore living languages spoken by millions — and the ancient voices that shaped civilization.
+      </p>
 
-      <!-- Poetry Widget -->
-      <div class="poetry-widget" style="margin-top: 2em; padding: 1em; border: 1px solid #444; border-radius: 10px; background: #2a2a2a;">
+      <section class="poetry-widget">
         <h2>📝 Featured Poem</h2>
-        <blockquote style="font-style: italic; margin: 0 0 1em 0;">
+        <blockquote>
           “In silence carved from echoes past,<br>
           The ancient tongue returns at last.<br>
           A syllable, a sacred name,<br>
           Lights the soul with burning flame.”
         </blockquote>
-        <p style="margin: 0.5em 0;"><strong>Poet:</strong> Anonymous · <a href="poems.html">Read More ➔</a></p>
-      </div>
-    </div>
+        <p><strong>Poet:</strong> Anonymous · <a href="poems.html">Read More →</a></p>
+      </section>
+
+    </main>
 
   </div>
 
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("open");
+    }
+  </script>
+
 </body>
+
 </html>
