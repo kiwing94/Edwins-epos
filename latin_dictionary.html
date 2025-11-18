@@ -68,8 +68,8 @@
     <button class="menu-btn" onclick="toggleSidebar()">☰</button>
   </header>
 
-  <div class="container">
-
+   <div class="container">
+   <div id="latinGrid" class="dictionary-grid"></div>
     <!-- Sidebar (samma som resten av din sida) -->
     <aside id="sidebar" class="sidebar">
       <h2>Languages</h2>
@@ -110,8 +110,41 @@
       }
     });
 </script>
+<script>
+let words = [];
+let pointer = 0;
+const BATCH = 50;
 
-    /* ---- RENDER GRID ---- */
+const grid = document.getElementById("latinGrid");
+
+function loadBatch() {
+  const slice = words.slice(pointer, pointer + BATCH);
+  pointer += BATCH;
+
+  for (const [latin, english] of slice) {
+    grid.insertAdjacentHTML("beforeend", `
+      <div class="latin-card">
+        <strong>${latin}</strong>
+        <div>${english}</div>
+      </div>
+    `);
+  }
+}
+
+fetch("latin_words.json")
+  .then(res => res.json())
+  .then(data => {
+    words = Object.entries(data);
+    loadBatch();
+  });
+
+window.addEventListener("scroll", () => {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+    loadBatch();
+  }
+});
+</script>
+ /* ---- RENDER GRID ---- */
     const grid = document.getElementById("latinGrid");
 
     for (const [latin, english] of Object.entries(latin_words)) {
@@ -129,5 +162,6 @@
   </script>
 </body>
 </html>
+
 
 
