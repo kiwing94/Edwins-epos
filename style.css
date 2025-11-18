@@ -73,18 +73,26 @@ body {
   letter-spacing: 1px;
 }
 
+.content {
+  width: calc(100vw - 260px);
+  max-width: none !important;
+}
+
+.dictionary-wrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.dictionary-grid {
+  width: 100%;
+}
+
 /* GRID FOR LANGUAGE CARDS */
 .language-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1.2rem;
   margin-top: 1.5rem;
-}
-
-.content {
-  max-width: 1400px !important;
-  width: 100% !important;
-  margin: auto;
 }
 
 .lang-card {
