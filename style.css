@@ -81,6 +81,12 @@ body {
   margin-top: 1.5rem;
 }
 
+.content {
+  max-width: 1400px !important;
+  width: 100% !important;
+  margin: auto;
+}
+
 .lang-card {
   background: #222;
   padding: 1rem;
