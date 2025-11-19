@@ -7,18 +7,53 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* Extra styling för just dictionary-grid */
-    .dictionary-wrapper {
-      margin-top: 2rem;
+
+    /* --- Search + Alphabet Controls --- */
+    .dictionary-controls {
+      margin-bottom: 1rem;
+      max-width: 900px;
     }
 
+    #searchBox {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #222;
+      color: #e6e3da;
+      margin-bottom: 1rem;
+    }
+
+    .alphabet-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .alphabet-bar span {
+      padding: 4px 10px;
+      border: 1px solid #444;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #d9b36c;
+      transition: 0.2s;
+    }
+
+    .alphabet-bar span:hover {
+      background: #333;
+      border-color: #d9b36c;
+    }
+
+    /* --- Dictionary Grid --- */
     .dictionary-grid {
-      height: 75vh;            /* gör den scrollbar */
+      height: 75vh;
       overflow-y: auto;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1rem;
-      padding-right: 1rem;     /* utrymme för scrollbaren */
+      padding-right: 1rem;
     }
 
     .latin-card {
@@ -27,7 +62,6 @@
       border-radius: 10px;
       border: 1px solid #333;
       text-align: center;
-      font-size: 1rem;
       color: #e6e3da;
       transition: 0.2s;
     }
@@ -41,42 +75,34 @@
       background: #2c2c2c;
       border-color: #d9b36c;
       transform: translateY(-2px);
+    }
+
+    /* --- Ensure content fills the page --- */
     .content {
-      width: calc(100vw - 260px); /* 260px = din sidebar-bredd */
+      width: calc(100vw - 260px);
       max-width: none !important;
-      margin: 0;                  /* ta bort auto-centrering */
-   }
+      padding: 2rem;
+      flex: 1;
+    }
 
-   .dictionary-wrapper {
-     max-width: 1600px;
-     margin: 0 auto;
-  }
-
-  .dictionary-grid {
-     width: 100%;
- }
-
-      
+    .dictionary-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
     }
   </style>
 </head>
 
 <body>
 
+  <!-- Topbar -->
   <header class="topbar">
     <div class="logo">LATIN • DICTIONARY</div>
     <button class="menu-btn" onclick="toggleSidebar()">☰</button>
   </header>
 
-   <div class="container">
-   <div id="latinGrid" class="dictionary-grid"></div>
-    <!-- Sidebar (samma som resten av din sida) -->
-     <div class="dictionary-controls">
-  <input id="searchBox" type="text" placeholder="Search Latin words...">
-  
-  </div>
-</div>
+  <div class="container">
 
+    <!-- Sidebar -->
     <aside id="sidebar" class="sidebar">
       <h2>Languages</h2>
       <nav>
@@ -86,113 +112,123 @@
 
     <!-- Main Content -->
     <main class="content">
-
       <h1>Latin Dictionary</h1>
       <p class="intro">Scroll to explore the full Latin → English vocabulary list.</p>
-      
-    <div class="alphabet-bar">
-    <span data-letter="all">All</span>
-    <span data-letter="a">A</span>
-    <span data-letter="b">B</span>
-    <span data-letter="c">C</span>
-    <span data-letter="d">D</span>
-    <span data-letter="e">E</span>
-    <span data-letter="f">F</span>
-    <span data-letter="g">G</span>
-    <span data-letter="h">H</span>
-    <span data-letter="i">I</span>
-    <span data-letter="l">L</span>
-    <span data-letter="m">M</span>
-    <span data-letter="n">N</span>
-    <span data-letter="o">O</span>
-    <span data-letter="p">P</span>
-    <span data-letter="q">Q</span>
-    <span data-letter="r">R</span>
-    <span data-letter="s">S</span>
-    <span data-letter="t">T</span>
-    <span data-letter="u">U</span>
-    <span data-letter="v">V</span>
-      <div class="dictionary-wrapper">
-        <div id="latinGrid" class="dictionary-grid">
-          <!-- Latin cards autogenereras här -->
+
+      <!-- Search + Alphabet -->
+      <div class="dictionary-controls">
+        <input id="searchBox" type="text" placeholder="Search Latin words...">
+
+        <div class="alphabet-bar">
+          <span data-letter="all">All</span>
+          <span data-letter="a">A</span>
+          <span data-letter="b">B</span>
+          <span data-letter="c">C</span>
+          <span data-letter="d">D</span>
+          <span data-letter="e">E</span>
+          <span data-letter="f">F</span>
+          <span data-letter="g">G</span>
+          <span data-letter="h">H</span>
+          <span data-letter="i">I</span>
+          <span data-letter="l">L</span>
+          <span data-letter="m">M</span>
+          <span data-letter="n">N</span>
+          <span data-letter="o">O</span>
+          <span data-letter="p">P</span>
+          <span data-letter="q">Q</span>
+          <span data-letter="r">R</span>
+          <span data-letter="s">S</span>
+          <span data-letter="t">T</span>
+          <span data-letter="u">U</span>
+          <span data-letter="v">V</span>
         </div>
+      </div>
+
+      <!-- Dictionary Grid -->
+      <div class="dictionary-wrapper">
+        <div id="latinGrid" class="dictionary-grid"></div>
       </div>
 
     </main>
   </div>
-  
- <script>
-  fetch("latin_words.json")
-    .then(res => res.json())
-    .then(data => {
-      const grid = document.getElementById("latinGrid");
 
-      for (const [latin, english] of Object.entries(data)) {
-        const card = `
+  <!-- JavaScript -->
+  <script>
+
+    let words = [];
+    let filtered = [];
+    let pointer = 0;
+    const BATCH = 50;
+
+    const grid = document.getElementById("latinGrid");
+    const searchBox = document.getElementById("searchBox");
+
+    // Load JSON file
+    fetch("latin_words.json")
+      .then(res => res.json())
+      .then(data => {
+        // Convert to entries and sort alphabetically
+        words = Object.entries(data).sort((a, b) => a[0].localeCompare(b[0]));
+        filtered = [...words];
+        loadBatch();
+      });
+
+    // Load 50 items at a time
+    function loadBatch() {
+      const slice = filtered.slice(pointer, pointer + BATCH);
+      pointer += BATCH;
+
+      slice.forEach(([latin, english]) => {
+        grid.insertAdjacentHTML("beforeend", `
           <div class="latin-card">
             <strong>${latin}</strong>
             <div>${english}</div>
           </div>
-        `;
-        grid.insertAdjacentHTML("beforeend", card);
-      }
-    });
-</script>
-<script>
-let words = [];
-let pointer = 0;
-const BATCH = 50;
-
-const grid = document.getElementById("latinGrid");
-
-function loadBatch() {
-  const slice = words.slice(pointer, pointer + BATCH);
-  pointer += BATCH;
-
-  for (const [latin, english] of slice) {
-    grid.insertAdjacentHTML("beforeend", `
-      <div class="latin-card">
-        <strong>${latin}</strong>
-        <div>${english}</div>
-      </div>
-    `);
-  }
-}
-
-fetch("latin_words.json")
-  .then(res => res.json())
-  .then(data => {
-    words = Object.entries(data);
-    loadBatch();
-  });
-
-window.addEventListener("scroll", () => {
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-    loadBatch();
-  }
-});
-</script>
- /* ---- RENDER GRID ---- */
-    const grid = document.getElementById("latinGrid");
-
-    for (const [latin, english] of Object.entries(latin_words)) {
-      grid.innerHTML += `
-        <div class="latin-card">
-          <strong>${latin}</strong>
-          <div>${english}</div>
-        </div>
-      `;
+        `);
+      });
     }
 
+    // Infinite scroll
+    grid.addEventListener("scroll", () => {
+      if (grid.scrollTop + grid.clientHeight >= grid.scrollHeight - 50) {
+        loadBatch();
+      }
+    });
+
+    // Search
+    searchBox.addEventListener("input", () => {
+      const query = searchBox.value.toLowerCase();
+      pointer = 0;
+      grid.innerHTML = "";
+
+      filtered = words.filter(([latin]) => latin.toLowerCase().includes(query));
+      loadBatch();
+    });
+
+    // Alphabet filter
+    document.querySelectorAll(".alphabet-bar span").forEach(el => {
+      el.addEventListener("click", () => {
+        const letter = el.dataset.letter;
+        searchBox.value = "";
+        pointer = 0;
+        grid.innerHTML = "";
+
+        if (letter === "all") {
+          filtered = words;
+        } else {
+          filtered = words.filter(([latin]) => latin.startsWith(letter));
+        }
+
+        loadBatch();
+      });
+    });
+
+    // Sidebar toggle (mobile)
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("open");
     }
+
   </script>
+
 </body>
 </html>
-
-
-
-
-
-
