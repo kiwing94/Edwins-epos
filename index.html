@@ -47,6 +47,73 @@
       document.getElementById("sidebar").classList.toggle("open");
     }
   </script>
+<script>
+let words = [];
+let filtered = [];
+let pointer = 0;
+const BATCH = 50;
+const grid = document.getElementById("latinGrid");
+const searchBox = document.getElementById("searchBox");
+
+// Load JSON
+fetch("latin_words.json")
+  .then(res => res.json())
+  .then(data => {
+    words = Object.entries(data).sort((a, b) => a[0].localeCompare(b[0]));
+    filtered = [...words];
+    loadBatch();
+  });
+
+// Load 50 at a time
+function loadBatch() {
+  const slice = filtered.slice(pointer, pointer + BATCH);
+  pointer += BATCH;
+
+  slice.forEach(([latin, english]) => {
+    grid.insertAdjacentHTML("beforeend", `
+      <div class="latin-card">
+        <strong>${latin}</strong>
+        <div>${english}</div>
+      </div>
+    `);
+  });
+}
+
+// Infinite scroll listener
+window.addEventListener("scroll", () => {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+    loadBatch();
+  }
+});
+
+// Search function
+searchBox.addEventListener("input", () => {
+  const query = searchBox.value.toLowerCase();
+  pointer = 0;
+  grid.innerHTML = "";
+
+  filtered = words.filter(([latin]) => latin.toLowerCase().includes(query));
+  loadBatch();
+});
+
+// Alphabet filter
+document.querySelectorAll(".alphabet-bar span").forEach(el => {
+  el.addEventListener("click", () => {
+    const letter = el.dataset.letter;
+    searchBox.value = "";
+    pointer = 0;
+    grid.innerHTML = "";
+
+    if (letter === "all") {
+      filtered = words;
+    } else {
+      filtered = words.filter(([latin]) => latin.startsWith(letter));
+    }
+
+    loadBatch();
+  });
+});
+</script>
 
 </body>
 
